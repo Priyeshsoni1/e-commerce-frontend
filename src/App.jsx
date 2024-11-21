@@ -1,13 +1,13 @@
 import "./App.css";
-import Cart from "./features/cart/cart";
-import { ProductDetails } from "./features/product/components/productDetails";
-import ProductList from "./features/product/components/ProductList";
+import Protected from "./features/auth/protected";
+
 import { CartPage } from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
-import { ProductDetailPage } from "./pages/ProductDetailPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+
 import SignupPage from "./pages/SignupPage";
 
 import {
@@ -20,7 +20,11 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: (
+      <Protected>
+        <Home></Home>
+      </Protected>
+    ),
   },
   {
     path: "/login",
@@ -32,15 +36,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <CartPage />,
+    element: (
+      <Protected>
+        <CartPage></CartPage>
+      </Protected>
+    ),
   },
   {
     path: "/checkout",
-    element: <Checkout />,
+    element: (
+      <Protected>
+        <Checkout></Checkout>
+      </Protected>
+    ),
   },
   {
-    path: "/product-detail",
-    element: <ProductDetailPage />,
+    path: "/product-detail/:id",
+    element: (
+      <Protected>
+        <ProductDetailPage></ProductDetailPage>
+      </Protected>
+    ),
   },
 ]);
 

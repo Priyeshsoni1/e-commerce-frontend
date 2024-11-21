@@ -41,6 +41,13 @@ export function fetchBrands() {
       .then((data) => resolve({ data }));
   });
 }
+export function fetchProductById(id) {
+  return new Promise((resolve) => {
+    fetch("http://localhost:8080/products/" + id)
+      .then((response) => response.json())
+      .then((data) => resolve({ data }));
+  });
+}
 export function fetchCategories() {
   return new Promise((resolve) => {
     fetch("http://localhost:8080/categories")

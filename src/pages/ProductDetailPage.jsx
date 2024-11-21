@@ -1,8 +1,8 @@
 import React from "react";
 import NavBar from "../features/navbar/Navbar";
-import { ProductDetails } from "../features/product/components/productDetails";
+import ProductDetails from "../features/product/components/ProductDetails";
 
-export const ProductDetailPage = () => {
+const ProductDetailPage = () => {
   return (
     <div>
       <NavBar>
@@ -11,3 +11,4 @@ export const ProductDetailPage = () => {
     </div>
   );
 };
+export default ProductDetailPage;
