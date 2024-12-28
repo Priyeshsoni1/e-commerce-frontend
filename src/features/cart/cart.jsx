@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteItemFromCartAsync,
@@ -30,6 +30,8 @@ export default function Cart() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white mt-12">
+      {" "}
+      {!products.length && <Navigate to="/" replace={true} />}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
         <h1 className="text-4xl my-10 mt-10 font-bold tracking-tight text-gray-900">
           Cart
@@ -114,12 +116,12 @@ export default function Cart() {
           Shipping and taxes calculated at checkout.
         </p>
         <div className="mt-6">
-          <a
-            href="/checkout"
+          <Link
+            to="/checkout"
             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
           >
             Checkout
-          </a>
+          </Link>
         </div>
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>

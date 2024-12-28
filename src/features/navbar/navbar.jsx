@@ -83,7 +83,7 @@ function NavBar({ children }) {
                           />
                         </button>{" "}
                       </Link>
-                      {itemsCart.length && (
+                      {!!itemsCart.length && (
                         <span className="inline-flex items-center rounded-md mb-7 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                           {itemsCart.length}
                         </span>
@@ -198,7 +198,7 @@ function NavBar({ children }) {
                         />
                       </button>
                     </Link>
-                    {itemsCart.length && (
+                    {!!itemsCart.length && (
                       <span className="inline-flex items-center rounded-md bg-red-50 mb-7 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                         {itemsCart.length}
                       </span>
