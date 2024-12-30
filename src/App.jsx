@@ -21,6 +21,10 @@ import { useEffect } from "react";
 import { fetchItemsByUserId } from "./features/cart/cartAPI";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import { selectLoggedInUser } from "./features/auth/authSlice";
+import { PageNotFound } from "./pages/PageNotFound";
+import { OrderSuccessPage } from "./pages/orderSuccessPage";
+import UserOrder from "./features/user/components/UserOrder";
+import UserOrderPage from "./pages/UserOrderPage";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +66,18 @@ const router = createBrowserRouter([
         <ProductDetailPage></ProductDetailPage>
       </Protected>
     ),
+  },
+  {
+    path: "/orders",
+    element: <UserOrderPage></UserOrderPage>,
+  },
+  {
+    path: "/order-success/:id",
+    element: <OrderSuccessPage />,
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
   },
 ]);
 
