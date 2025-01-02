@@ -25,3 +25,9 @@ export function checkUser(loginInfo) {
     reject({ message: "Invalid email or password" });
   });
 }
+
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    resolve({ data: "success" });
+  });
+}

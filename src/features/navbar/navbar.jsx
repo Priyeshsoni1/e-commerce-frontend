@@ -19,7 +19,7 @@ const navigation = [{ name: "Dashboard", href: "/", current: true }];
 const userNavigation = [
   { name: "My Profile", link: "/profile" },
   { name: "My Orders", link: "/orders" },
-  { name: "Sign out", link: "/login" },
+  { name: "Sign out", link: "/logout" },
 ];
 
 function classNames(...classes) {
@@ -203,14 +203,14 @@ function NavBar({ children }) {
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
-                      <Disclosure.Button
+                      <Link
                         key={item.name}
                         as="a"
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        to={item.link}
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-green-400"
                       >
                         {item.name}
-                      </Disclosure.Button>
+                      </Link>
                     ))}
                   </div>
                 </div>
