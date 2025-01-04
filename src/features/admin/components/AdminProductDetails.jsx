@@ -4,7 +4,10 @@ import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import { fetchProductByIdAsync, selectProductById } from "../productListSlice";
+import {
+  fetchProductByIdAsync,
+  selectProductById,
+} from "../../product/productListSlice";
 import { addToCartAsync } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 
@@ -38,7 +41,7 @@ function classNames(...classes) {
 }
 
 // TODO : Loading UI
-const ProductDetails = () => {
+const AdminProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductById);
@@ -351,4 +354,4 @@ const ProductDetails = () => {
     </div>
   );
 };
-export default ProductDetails;
+export default AdminProductDetail;

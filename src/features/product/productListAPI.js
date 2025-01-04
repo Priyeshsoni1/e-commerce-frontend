@@ -7,6 +7,8 @@ export function fetchAllProducts() {
 }
 export function fetchProductsByFilters(filters, sort, pagination) {
   console.log(pagination, "responsePagination");
+  //TODO: on server we will support multi values in filter
+  // TODO: sever will filter deleted products in case of non-admin user
   let queryString = "";
   for (const key in filters) {
     const categoryValues = filters[key];
@@ -53,5 +55,35 @@ export function fetchCategories() {
     fetch("http://localhost:8080/categories")
       .then((response) => response.json())
       .then((data) => resolve({ data }));
+  });
+}
+
+export function createProduct(product) {
+  return new Promise(async (resolve) => {
+    const response = await fetch("http://localhost:8080/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    });
+    const data = await response.json();
+    resolve({ data });
+  });
+}
+export function updateProduct(update) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(
+      "http://localhost:8080/products/" + update.id,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(update),
+      }
+    );
+    const data = await response.json();
+    resolve({ data });
   });
 }

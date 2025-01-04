@@ -4,16 +4,16 @@
       "id": 1,
       "title": "Essence Mascara Lash Princess",
       "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
-      "category": "beauty",
-      "price": 9.99,
-      "discountPercentage": 7.17,
-      "rating": 4.94,
+      "category": "sunglasses",
+      "price": 1221,
+      "discountPercentage": 7,
+      "rating": 0,
       "stock": 5,
       "tags": [
         "beauty",
         "mascara"
       ],
-      "brand": "Essence",
+      "brand": "Saaf & Khaas",
       "sku": "RCH45Q1A",
       "weight": 2,
       "dimensions": {
@@ -56,24 +56,28 @@
         "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
       },
       "images": [
-        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
+        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png",
+        null,
+        null,
+        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png"
+      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
+      "deleted": true
     },
     {
       "id": 2,
       "title": "Eyeshadow Palette with Mirror",
       "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-      "category": "beauty",
-      "price": 19.99,
-      "discountPercentage": 5.5,
+      "category": "smartphones",
+      "price": 1212,
+      "discountPercentage": 5,
       "rating": 3.28,
       "stock": 44,
       "tags": [
         "beauty",
         "eyeshadow"
       ],
-      "brand": "Glamour Beauty",
+      "brand": "Samsung",
       "sku": "MVCFH27F",
       "weight": 3,
       "dimensions": {
@@ -116,7 +120,10 @@
         "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
       },
       "images": [
-        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png",
+        null,
+        null,
+        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png"
       ],
       "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png"
     },
@@ -6007,6 +6014,24 @@
         "https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/3.png"
       ],
       "thumbnail": "https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/thumbnail.png"
+    },
+    {
+      "title": "Red Nail Polish",
+      "description": "The Red Nail Polish offers a rich and glossy red hue for vibrant and polished nails. With a quick-drying formula, it provides a salon-quality finish at home.",
+      "price": 8,
+      "discountPercentage": 2,
+      "stock": 71,
+      "brand": "Fair & Clear",
+      "category": "automotive",
+      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/thumbnail.png",
+      "images": [
+        "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/1.png",
+        "https://www.pexels.com/photo/niels-27200898/",
+        "https://www.pexels.com/photo/niels-27200898/",
+        "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/thumbnail.png"
+      ],
+      "rating": 0,
+      "id": 101
     }
   ],
   "brands": [
@@ -6508,12 +6533,14 @@
       "email": "Priyesh9792@gmail.com",
       "password": "qweQWE@1",
       "addresses": [],
+      "role": "user",
       "id": 1
     },
     {
       "email": "abc@gmail.com",
       "password": "qweQWE@1",
       "id": 2,
+      "role": "user",
       "addresses": [
         {
           "name": "Master",
@@ -6552,6 +6579,13 @@
           "pinCode": "sd"
         }
       ]
+    },
+    {
+      "email": "rocky@gmaill.com",
+      "password": "4570Aa!1",
+      "addresses": [],
+      "role": "admin",
+      "id": 3
     }
   ],
   "cart": [

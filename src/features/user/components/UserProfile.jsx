@@ -59,6 +59,11 @@ export default function UserProfile() {
             <h3 className="text-xl my-10 mt-10 font-bold tracking-tight text-red-900">
               Email: {user?.email}
             </h3>
+            {user?.role == "admin" && (
+              <h3 className="text-xl my-10 mt-10 font-bold tracking-tight text-red-900">
+                Role: {user?.role}
+              </h3>
+            )}
           </div>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="mt-0.5 text-sm text-gray-500">Your Address</p>
