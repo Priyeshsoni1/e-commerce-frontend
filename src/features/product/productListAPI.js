@@ -33,7 +33,7 @@ export function fetchProductsByFilters(filters, sort, pagination) {
     );
     const data = await response.json();
     const totalItems = await response.headers.get("X-Total-Count");
-    resolve({ data: { products: data, totalItems: +totalItems } });
+    resolve({ data: { orders: data, totalItems: +totalItems } });
   });
 }
 export function fetchBrands() {

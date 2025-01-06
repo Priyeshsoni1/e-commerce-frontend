@@ -3,7 +3,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { StarIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import { ITEMS_PER_PAGE } from "../../../app/constant";
+import { discountedPrice, ITEMS_PER_PAGE } from "../../../app/constant";
 import {
   ChevronDownIcon,
   FunnelIcon,
@@ -368,10 +368,7 @@ const ProductGrid = ({ products, filters }) => {
                     <div>
                       {" "}
                       <p className="text-sm font-medium text-gray-900">
-                        $
-                        {Math.round(
-                          product.price * (1 - product.discountPercentage / 100)
-                        )}
+                        {discountedPrice(product)}
                       </p>
                       <p className="text-sm font-medium text-gray-500 line-through">
                         ${product.price}

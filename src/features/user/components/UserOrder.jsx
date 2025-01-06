@@ -5,6 +5,7 @@ import {
   SelectfetchLoggedOrders,
   SelectUserInfo,
 } from "../UserSlice";
+import { discountedPrice } from "../../../app/constant";
 
 const UserOrder = () => {
   const user = useSelector(SelectUserInfo);
@@ -47,7 +48,7 @@ const UserOrder = () => {
                               <h3>
                                 <a href={product.href}>{product.title}</a>
                               </h3>
-                              <p className="ml-4">{product.price}</p>
+                              <p className="ml-4">{discountedPrice(product)}</p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {product.color}

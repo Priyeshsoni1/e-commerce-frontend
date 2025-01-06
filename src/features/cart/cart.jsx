@@ -13,12 +13,13 @@ import {
   selectItems,
   updateCartAsync,
 } from "./cartSlice";
+import { discountedPrice } from "../../app/constant";
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
   const products = useSelector(selectItems);
   const totalAmount = products.reduce(
-    (amount, item) => amount + item.price * item.quantity,
+    (amount, item) => amount + discountedPrice(item) * item.quantity,
     0
   );
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ export default function Cart() {
                       <h3>
                         <a href={product.href}>{product.title}</a>
                       </h3>
-                      <p className="ml-4">{product.price}</p>
+                      <p className="ml-4">{discountedPrice(product)}</p>
                     </div>
                     <p className="mt-1 text-sm text-gray-500">
                       {product.color}
