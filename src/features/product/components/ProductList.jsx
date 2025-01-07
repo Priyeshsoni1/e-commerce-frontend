@@ -291,9 +291,14 @@ const ProductGrid = ({ products, filters }) => {
                       <p className="text-sm font-medium text-gray-500 line-through">
                         ${product.price}
                       </p>
-                    </div>
+                    </div>{" "}
+                  </div>{" "}
+                </div>{" "}
+                {product.stock <= 0 && (
+                  <div>
+                    <p className="text-sm text-red-400 mt-2">out of stock</p>
                   </div>
-                </div>
+                )}
               </Link>
             ))}
           </div>

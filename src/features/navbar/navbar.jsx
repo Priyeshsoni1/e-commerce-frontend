@@ -11,8 +11,8 @@ import { selectItems } from "../cart/cartSlice";
 import { SelectfetchLoggedOrders, SelectUserInfo } from "../user/UserSlice";
 
 const navigation = [
-  { name: "Dashboard", href: "/", user: true },
-  { name: "Admin", href: "/admin", admin: true },
+  { name: "Products", href: "/", user: true },
+  { name: "Products", href: "/admin", admin: true },
   { name: "Orders", href: "/admin/orders", admin: true },
 ];
 const userNavigation = [

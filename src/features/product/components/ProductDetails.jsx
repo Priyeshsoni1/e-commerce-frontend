@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
 import { fetchProductByIdAsync, selectProductById } from "../productListSlice";
-import { addToCartAsync } from "../../cart/cartSlice";
+import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constant";
 
@@ -51,12 +51,22 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id));
   }, [dispatch, params.id]);
+  const item = useSelector(selectItems);
 
   const handleAddToCart = (e, product) => {
     e.preventDefault();
-    const newItem = { ...product, quantity: 1, user: user.id };
-    delete newItem.id;
-    dispatch(addToCartAsync(newItem));
+    if (item.findIndex((item) => item.productId == product.id) < 0) {
+      const newItem = {
+        ...product,
+        productId: product.id,
+        quantity: 1,
+        user: user.id,
+      };
+      delete newItem.id;
+      dispatch(addToCartAsync(newItem));
+    } else {
+      console.log("Already present");
+    }
   };
 
   return (
