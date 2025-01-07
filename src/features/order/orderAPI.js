@@ -25,8 +25,11 @@ export function updateOrder(order) {
   });
 }
 
-export function fetchAllOrders(pagination) {
+export function fetchAllOrders(sort, pagination) {
   let queryString = "";
+  for (let key in sort) {
+    queryString += `${key}=${sort[key]}&`;
+  }
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
@@ -36,7 +39,8 @@ export function fetchAllOrders(pagination) {
     //TODO: we will not hard-code server URL here
     const response = await fetch("http://localhost:8080/orders?" + queryString);
     const data = await response.json();
-    const totalOrders = await response.headers.get("X-Total-Count");
-    resolve({ data: { products: data, totalOrders: +totalOrders } });
+    const totalOrders = response.headers.get("X-Total-Count");
+    console.log(totalOrders, "toatlaCOundt");
+    resolve({ data: { orders: data, totalOrders: +totalOrders } });
   });
 }

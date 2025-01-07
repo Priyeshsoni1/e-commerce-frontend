@@ -7723,7 +7723,7 @@
       },
       "selectedAddress": null,
       "paymentMethod": "cash",
-      "status": "pending",
+      "status": "dispatched",
       "id": 6
     },
     {

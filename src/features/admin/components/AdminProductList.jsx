@@ -44,6 +44,7 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProducts);
+  console.log(products, "admintpage");
   const totalItems = useSelector(selectTotalItems);
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
@@ -343,69 +344,71 @@ const Pagination = ({ handlePage, page, setPage, totalItems, filters }) => {
 };
 
 const ProductGrid = ({ products, filters }) => {
+  console.log(products, "admintpage");
   return (
     <div className="lg:col-span-3">
       {/* This is our products list  */}
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {products.map((product) => (
-              <div key={product.id} className="group relative">
-                <Link key={product.id} to={`/product-detail/${product.id}`}>
-                  <div key={product.id} className="group relative">
-                    <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                      <img
-                        src={product.thumbnail}
-                        alt={product.title}
-                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                      />
-                    </div>
-                    <div className="mt-4 flex justify-between">
-                      <div>
-                        <h3 className="text-sm text-gray-700">
-                          <p href={product.thumbnail}>
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                            {product.title}
+            {products &&
+              products.map((product) => (
+                <div key={product.id} className="group relative">
+                  <Link key={product.id} to={`/product-detail/${product.id}`}>
+                    <div key={product.id} className="group relative">
+                      <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                        <img
+                          src={product.thumbnail}
+                          alt={product.title}
+                          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                        />
+                      </div>
+                      <div className="mt-4 flex justify-between">
+                        <div>
+                          <h3 className="text-sm text-gray-700">
+                            <p href={product.thumbnail}>
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0"
+                              />
+                              {product.title}
+                            </p>
+                          </h3>
+                          <p className="mt-1 text-sm text-gray-500">
+                            <StarIcon className="h-6 w-6 inline" />
+                            <span className="align-bottom">
+                              {" "}
+                              {product.rating}
+                            </span>
                           </p>
-                        </h3>
-                        <p className="mt-1 text-sm text-gray-500">
-                          <StarIcon className="h-6 w-6 inline" />
-                          <span className="align-bottom">
-                            {" "}
-                            {product.rating}
-                          </span>
-                        </p>
-                      </div>
-                      <div>
-                        {" "}
-                        <p className="text-sm font-medium text-gray-900">
-                          {discountedPrice(product)}
-                        </p>
-                        <p className="text-sm font-medium text-gray-500 line-through">
-                          ${product.price}
-                        </p>
-                      </div>
+                        </div>
+                        <div>
+                          {" "}
+                          <p className="text-sm font-medium text-gray-900">
+                            {discountedPrice(product)}
+                          </p>
+                          <p className="text-sm font-medium text-gray-500 line-through">
+                            ${product.price}
+                          </p>
+                        </div>
+                      </div>{" "}
+                      {product.deleted && (
+                        <div className="text-sm text-red-500">
+                          {" "}
+                          Product Deleted{" "}
+                        </div>
+                      )}
                     </div>{" "}
-                    {product.deleted && (
-                      <div className="text-sm text-red-500">
-                        {" "}
-                        Product Deleted{" "}
-                      </div>
-                    )}
-                  </div>{" "}
-                </Link>{" "}
-                <Link
-                  to={`/admin/product-form/edit/${product.id}`}
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-3"
-                >
-                  Edit Product
-                </Link>
-              </div>
-            ))}
+                  </Link>{" "}
+                  <Link
+                    to={`/admin/product-form/edit/${product.id}`}
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-indigo-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-3"
+                  >
+                    Edit Product
+                  </Link>
+                </div>
+              ))}
           </div>
         </div>
       </div>

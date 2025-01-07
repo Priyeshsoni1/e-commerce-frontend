@@ -23,7 +23,7 @@ function AdminOrders() {
   const totalOrders = useSelector(selectOrderCount);
   const [editableOrderId, setEditableOrderId] = useState(-1);
   const [sort, setSort] = useState({});
-
+  console.log(orders, totalOrders, "admintOrders");
   const handleEdit = (order) => {
     setEditableOrderId(order.id);
   };
@@ -39,6 +39,8 @@ function AdminOrders() {
 
   const handlePage = (page) => {
     setPage(page);
+    const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
+    dispatch(fetchAllOrdersAsync({ sort, pagination }));
   };
 
   const handleSort = (sortOption) => {
@@ -128,7 +130,7 @@ function AdminOrders() {
                       </div>
                     </td>
                     <td className="py-3 px-6 text-left">
-                      {order.items.map((item, index) => (
+                      {order.products.map((item, index) => (
                         <div className="flex items-center" key={index}>
                           <div className="mr-2">
                             <img
@@ -151,13 +153,13 @@ function AdminOrders() {
                     <td className="py-3 px-6 text-center">
                       <div className="">
                         <div>
-                          <strong>{order.selectedAddress.name}</strong>,
+                          <strong>{order.selectedAddress?.name}</strong>,
                         </div>
-                        <div>{order.selectedAddress.street},</div>
-                        <div>{order.selectedAddress.city}, </div>
-                        <div>{order.selectedAddress.state}, </div>
-                        <div>{order.selectedAddress.pinCode}, </div>
-                        <div>{order.selectedAddress.phone}, </div>
+                        <div>{order.selectedAddress?.street},</div>
+                        <div>{order.selectedAddress?.city}, </div>
+                        <div>{order.selectedAddress?.state}, </div>
+                        <div>{order.selectedAddress?.pinCode}, </div>
+                        <div>{order.selectedAddress?.phone}, </div>
                       </div>
                     </td>
                     <td className="py-3 px-6 text-center">

@@ -18,9 +18,9 @@ export const createOrderAsync = createAsyncThunk(
 );
 
 export const fetchAllOrdersAsync = createAsyncThunk(
-  "order/createOrder",
-  async (pagination) => {
-    const response = await fetchAllOrders(pagination);
+  "order/fetchAllOrders",
+  async ({ sort, pagination }) => {
+    const response = await fetchAllOrders(sort, pagination);
     return response.data;
   }
 );
@@ -79,6 +79,6 @@ export const { resetOrder } = orderSlice.actions;
 
 export const selectCurrentOrder = (state) => state.order.currentOrder;
 export const selectOrders = (state) => state.order.orders;
-export const selectOrderCount = (state) => state.orders.totalOrders;
+export const selectOrderCount = (state) => state.order.totalOrders;
 
 export default orderSlice.reducer;
