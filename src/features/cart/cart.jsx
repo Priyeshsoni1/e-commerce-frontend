@@ -10,14 +10,18 @@ import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteItemFromCartAsync,
+  selectCartStatus,
   selectItems,
   updateCartAsync,
 } from "./cartSlice";
 import { discountedPrice } from "../../app/constant";
+import { Grid } from "react-loader-spinner";
+import Modal from "../common/Modal";
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
   const products = useSelector(selectItems);
+  const status = useSelector(selectCartStatus);
   const totalAmount = products.reduce(
     (amount, item) => amount + discountedPrice(item) * item.quantity,
     0
@@ -28,7 +32,7 @@ export default function Cart() {
   const handleQuantity = (e, items) => {
     dispatch(updateCartAsync({ ...items, quantity: +e.target.value }));
   };
-
+  const [showModal, setShowModal] = useState(-1);
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white mt-12">
       {" "}
@@ -38,6 +42,18 @@ export default function Cart() {
           Cart
         </h1>
         <div className="flow-root">
+          {status === "loading" ? (
+            <Grid
+              height="80"
+              width="80"
+              color="rgb(79, 70, 229) "
+              ariaLabel="grid-loading"
+              radius="12.5"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          ) : null}
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {products.map((product) => (
               <li key={product.id} className="flex py-6">
@@ -87,10 +103,21 @@ export default function Cart() {
                     </div>
 
                     <div className="flex">
-                      <button
-                        onClick={() =>
+                      <Modal
+                        title={`Delete ${product.title}`}
+                        message="Are you sure you want to delete this cart Item ?"
+                        dangerOption={"Delete"}
+                        cancelOption={"Cancel"}
+                        dangerAction={() =>
                           dispatch(deleteItemFromCartAsync(product.id))
                         }
+                        cancelAction={() => {
+                          setShowModal(-1);
+                        }}
+                        showModal={product.id == showModal}
+                      />
+                      <button
+                        onClick={() => setShowModal(product.id)}
                         type="button"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >

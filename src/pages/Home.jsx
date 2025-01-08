@@ -1,4 +1,5 @@
 import NavBar from "../features/navbar/Navbar";
+import Footer from "../features/common/Footer";
 import ProductList from "../features/product/components/ProductList";
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
       <NavBar>
         <ProductList></ProductList>
       </NavBar>
+      <Footer />
     </div>
   );
 }

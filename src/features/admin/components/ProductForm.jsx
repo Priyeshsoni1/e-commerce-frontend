@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import {
 } from "../../product/productListSlice";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import Modal from "../../common/Modal";
 
 export const ProductForm = () => {
   const brands = useSelector(selectBrands);
@@ -51,7 +52,7 @@ export const ProductForm = () => {
       setValue("image3", selectedProduct?.images[2]);
     }
   }, [selectedProduct, setValue, params.id]);
-
+  const [showModal, setShowModal] = useState(false);
   const handleDelete = (index) => {
     const product = { ...selectedProduct };
     product.deleted = true;
@@ -95,9 +96,18 @@ export const ProductForm = () => {
     >
       <div className="space-y-12 p-10 bg-white">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base/7 font-semibold text-gray-900">
-            Add New Product
+          <h2
+            className={`text-base/7 font-semibold ${
+              selectedProduct?.deleted ? "text-red-500" : "text-gray-900"
+            }`}
+          >
+            {params.id && !selectedProduct.deleted
+              ? "Edit Product"
+              : selectedProduct?.deleted
+              ? "Product is Deleted"
+              : "Add New Product"}
           </h2>
+          {}
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 ">
             <div className="sm:col-span-4  ">
@@ -712,11 +722,10 @@ export const ProductForm = () => {
         >
           Cancel
         </button>
-        {params.id && (
+
+        {params.id && !selectedProduct?.deleted && (
           <button
-            onClick={() => {
-              handleDelete(params.id);
-            }}
+            onClick={() => setShowModal(true)}
             className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
           >
             Delete
@@ -729,6 +738,17 @@ export const ProductForm = () => {
           Save
         </button>
       </div>
+      <Modal
+        title={`Delete ${selectedProduct.title}`}
+        message="Are you sure you want to delete this product  ?"
+        dangerOption={"Delete"}
+        cancelOption={"Cancel"}
+        dangerAction={() => handleDelete(selectedProduct.id)}
+        cancelAction={() => {
+          setShowModal(false);
+        }}
+        showModal={showModal}
+      />
     </form>
   );
 };

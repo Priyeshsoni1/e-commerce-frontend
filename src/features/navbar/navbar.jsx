@@ -12,7 +12,7 @@ import { SelectfetchLoggedOrders, SelectUserInfo } from "../user/UserSlice";
 
 const navigation = [
   { name: "Products", href: "/", user: true },
-  { name: "Products", href: "/admin", admin: true },
+  { name: "Admin", href: "/admin", admin: true },
   { name: "Orders", href: "/admin/orders", admin: true },
 ];
 const userNavigation = [
@@ -41,7 +41,7 @@ function NavBar({ children }) {
                       <Link to="/">
                         <img
                           alt="Your Company"
-                          src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                          src="/ecommerce.png"
                           className="h-8 w-auto"
                         />
                       </Link>

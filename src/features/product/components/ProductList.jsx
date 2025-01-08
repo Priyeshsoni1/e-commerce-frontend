@@ -11,6 +11,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import { Grid } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +23,7 @@ import {
   selectAllProducts,
   selectBrands,
   selectCategories,
+  selectProductStatus,
   selectTotalItems,
 } from "../productListSlice";
 import Pagination from "../../common/Pagination";
@@ -251,12 +253,26 @@ export default function ProductList() {
 }
 
 const ProductGrid = ({ products, filters }) => {
+  const status = useSelector(selectProductStatus);
   return (
     <div className="lg:col-span-3">
       {/* This is our products list  */}
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {" "}
+            {status === "loading" ? (
+              <Grid
+                height="80"
+                width="80"
+                color="rgb(79, 70, 229) "
+                ariaLabel="grid-loading"
+                radius="12.5"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : null}
             {products?.map((product) => (
               <Link key={product.id} to={`/product-detail/${product.id}`}>
                 <div key={product.id} className="group relative">

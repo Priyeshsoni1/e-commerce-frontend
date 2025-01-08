@@ -4,7 +4,7 @@ import Protected from "./features/auth/protected";
 
 import { CartPage } from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
-
+import { ToastContainer, toast } from "react-toastify";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -151,6 +151,7 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
+
   useEffect(() => {
     if (user) {
       dispatch(fetchItemsByUserIdAsync(user?.id));
@@ -160,6 +161,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
+      <ToastContainer />
     </div>
   );
 }

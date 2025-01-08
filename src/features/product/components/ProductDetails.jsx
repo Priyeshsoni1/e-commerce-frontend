@@ -8,6 +8,7 @@ import { fetchProductByIdAsync, selectProductById } from "../productListSlice";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constant";
+import { ToastContainer, toast } from "react-toastify";
 
 // TODO: In server data we will add colors, sizes , highlights. to each product
 
@@ -64,8 +65,9 @@ const ProductDetails = () => {
       };
       delete newItem.id;
       dispatch(addToCartAsync(newItem));
+      toast.success("Added");
     } else {
-      console.log("Already present");
+      toast.info("Already Present");
     }
   };
 
