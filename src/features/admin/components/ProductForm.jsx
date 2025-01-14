@@ -101,7 +101,7 @@ export const ProductForm = () => {
               selectedProduct?.deleted ? "text-red-500" : "text-gray-900"
             }`}
           >
-            {params.id && !selectedProduct.deleted
+            {params?.id && !selectedProduct?.deleted
               ? "Edit Product"
               : selectedProduct?.deleted
               ? "Product is Deleted"
@@ -739,11 +739,11 @@ export const ProductForm = () => {
         </button>
       </div>
       <Modal
-        title={`Delete ${selectedProduct.title}`}
+        title={`Delete ${selectedProduct?.title}`}
         message="Are you sure you want to delete this product  ?"
         dangerOption={"Delete"}
         cancelOption={"Cancel"}
-        dangerAction={() => handleDelete(selectedProduct.id)}
+        dangerAction={() => handleDelete(selectedProduct?.id)}
         cancelAction={() => {
           setShowModal(false);
         }}
