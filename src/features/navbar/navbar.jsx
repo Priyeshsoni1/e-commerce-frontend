@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../cart/cartSlice";
-import { SelectfetchLoggedOrders, SelectUserInfo } from "../user/UserSlice";
+import { selectUserInfo } from "../user/UserSlice";
 
 const navigation = [
   { name: "Products", href: "/", user: true },
@@ -27,7 +27,7 @@ function classNames(...classes) {
 
 function NavBar({ children }) {
   const itemsCart = useSelector(selectItems);
-  const user = useSelector(SelectUserInfo);
+  const user = useSelector(selectUserInfo);
   return (
     <>
       <div className="min-h-full">

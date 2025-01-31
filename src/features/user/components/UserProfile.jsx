@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { SelectUserInfo, updateUserAsync } from "../UserSlice";
+import { selectUserInfo, updateUserAsync } from "../UserSlice";
 import { set, useForm } from "react-hook-form";
 
 export default function UserProfile() {
-  const user = useSelector(SelectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const dispatch = useDispatch();
 
   const {
@@ -19,28 +19,28 @@ export default function UserProfile() {
   const [indexOfEditForm, setIndexOfEditForm] = useState(-1);
   const handleRemove = (e, index) => {
     console.log("Remove");
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser));
   };
   const [showAddressForm, setShowAddressForm] = useState(false);
   const handleEditForm = (index) => {
     setIndexOfEditForm(index);
-    setValue("name", user.addresses[index].name);
-    setValue("email", user.addresses[index].email);
-    setValue("phone", user.addresses[index].phone);
-    setValue("street", user.addresses[index].street);
-    setValue("city", user.addresses[index].city);
-    setValue("state", user.addresses[index].state);
+    setValue("name", userInfo.addresses[index].name);
+    setValue("email", userInfo.addresses[index].email);
+    setValue("phone", userInfo.addresses[index].phone);
+    setValue("street", userInfo.addresses[index].street);
+    setValue("city", userInfo.addresses[index].city);
+    setValue("state", userInfo.addresses[index].state);
   };
   const handleEdit = (updateAddress, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses[index] = updateAddress;
     dispatch(updateUserAsync(newUser));
     setIndexOfEditForm(-1);
   };
   const handleAdd = (newAddress) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.push(newAddress);
     dispatch(updateUserAsync(newUser));
     setShowAddressForm(false);
@@ -54,14 +54,14 @@ export default function UserProfile() {
           {/* {!products.length && <Navigate to="/" replace={true} />} */}
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
             <h1 className="text-4xl my-10 mt-10 font-bold tracking-tight text-gray-900">
-              Name: {user?.name ? user?.name : "Guest User"}
+              Name: {userInfo?.name ? userInfo?.name : "Guest User"}
             </h1>
             <h3 className="text-xl my-10 mt-10 font-bold tracking-tight text-red-900">
-              Email: {user?.email}
+              Email: {userInfo?.email}
             </h3>
-            {user?.role == "admin" && (
+            {userInfo?.role == "admin" && (
               <h3 className="text-xl my-10 mt-10 font-bold tracking-tight text-red-900">
-                Role: {user?.role}
+                Role: {userInfo?.role}
               </h3>
             )}
           </div>
@@ -257,7 +257,7 @@ export default function UserProfile() {
               </form>
             )}
 
-            {user?.addresses?.map((address, index) => {
+            {userInfo?.addresses?.map((address, index) => {
               return (
                 <div key={index}>
                   {indexOfEditForm == index && (

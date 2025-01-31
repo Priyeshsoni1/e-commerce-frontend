@@ -1,11 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { checkUser, createUser, signOut } from "./authAPI";
+import {
+  loginUser,
+  createUser,
+  signOut,
+  checkAuth,
+  resetPasswordRequest,
+  resetPassword,
+} from "./authAPI";
 import { updateUser } from "../user/UserAPI";
 
 const initialState = {
-  loggedInUser: null,
+  loggedInUserToken: null,
   status: "idle",
   error: null,
+  userChecked: false,
+  mailSent: false,
+  passwordReset: false,
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -18,13 +28,17 @@ export const createUserAsync = createAsyncThunk(
   }
 );
 
-export const checkUserAsync = createAsyncThunk(
-  "user/checkUser",
-  async (loginInfo) => {
-    const response = await checkUser(loginInfo);
-    console.log(response, "response of user");
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
+export const loginUserAsync = createAsyncThunk(
+  "user/loginUser",
+  async (loginInfo, { rejectWithValue }) => {
+    try {
+      const response = await loginUser(loginInfo);
+      console.log(response, "response of user");
+      // The value we return becomes the `fulfilled` action payload
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );
 export const updateUserAsync = createAsyncThunk(
@@ -36,9 +50,44 @@ export const updateUserAsync = createAsyncThunk(
     return response.data;
   }
 );
+export const checkAuthAsync = createAsyncThunk("user/checkAuth", async () => {
+  try {
+    const response = await checkAuth();
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-export const signOutAsync = createAsyncThunk("user/signOut", async (userId) => {
-  const response = await signOut(userId);
+export const resetPasswordRequestAsync = createAsyncThunk(
+  "user/resetPasswordRequest",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await resetPasswordRequest(email);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const resetPasswordAsync = createAsyncThunk(
+  "user/resetPassword",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await resetPassword(data);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const signOutAsync = createAsyncThunk("user/signOut", async () => {
+  const response = await signOut();
   console.log(response, "response of user");
   // The value we return becomes the `fulfilled` action payload
   return response.data;
@@ -59,47 +108,63 @@ export const counterSlice = createSlice({
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        console.log("ProtedUser", action.payload);
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
-      .addCase(checkUserAsync.pending, (state) => {
+      .addCase(loginUserAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(checkUserAsync.fulfilled, (state, action) => {
+      .addCase(loginUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        console.log("ProtedUser", action.payload);
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
-      .addCase(checkUserAsync.rejected, (state, action) => {
+      .addCase(loginUserAsync.rejected, (state, action) => {
         state.status = "idle";
-        console.log("ProtedUser", action.payload);
-        state.error = action.error;
-      })
-      .addCase(updateUserAsync.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(updateUserAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        console.log("ProtedUser", action.payload);
-        state.loggedInUser = action.payload;
+        state.error = action.payload;
       })
       .addCase(signOutAsync.pending, (state) => {
         state.status = "loading";
       })
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        console.log("ProtedUser", action.payload);
-        state.loggedInUser = null;
+        state.loggedInUserToken = null;
+      })
+      .addCase(checkAuthAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(checkAuthAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.loggedInUserToken = action.payload;
+        state.userChecked = true;
+      })
+      .addCase(checkAuthAsync.rejected, (state, action) => {
+        state.status = "idle";
+        state.userChecked = true;
+      })
+      .addCase(resetPasswordRequestAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(resetPasswordRequestAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.mailSent = true;
+      })
+      .addCase(resetPasswordAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(resetPasswordAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.passwordReset = true;
+      })
+      .addCase(resetPasswordAsync.rejected, (state, action) => {
+        state.status = "idle";
+        state.error = action.payload;
       });
   },
 });
 
-export const { increment } = counterSlice.actions;
-
-export const selectLoggedInUser = (state) => {
-  console.log("ProtedUser", state.auth.loggedInUser);
-  return state.auth.loggedInUser;
-};
+export const selectLoggedInUser = (state) => state.auth.loggedInUserToken;
 export const selectError = (state) => state.auth.error;
+export const selectUserChecked = (state) => state.auth.userChecked;
+export const selectMailSent = (state) => state.auth.mailSent;
+export const selectPasswordReset = (state) => state.auth.passwordReset;
 
 export default counterSlice.reducer;

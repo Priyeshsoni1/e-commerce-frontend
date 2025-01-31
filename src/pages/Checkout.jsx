@@ -12,8 +12,9 @@ import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
-import { SelectUserInfo } from "../features/user/UserSlice";
+// import { SelectUserInfo } from "../features/user/UserSlice";
 import { discountedPrice } from "../app/constant";
+import { selectUserInfo } from "../features/user/UserSlice";
 
 function Checkout() {
   const [open, setOpen] = useState(true);
@@ -35,7 +36,7 @@ function Checkout() {
   const handleQuantity = (e, items) => {
     dispatch(updateCartAsync({ ...items, quantity: +e.target.value }));
   };
-  const user = useSelector(SelectUserInfo);
+  const user = useSelector(selectUserInfo);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const handleAddress = (e) => {

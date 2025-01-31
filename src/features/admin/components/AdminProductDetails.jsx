@@ -57,7 +57,7 @@ const AdminProductDetail = () => {
 
   const handleAddToCart = (e, product) => {
     e.preventDefault();
-    const newItem = { ...product, quantity: 1, user: user.id };
+    const newItem = { ...product, quantity: 1 };
     delete newItem.id;
     dispatch(addToCartAsync(newItem));
   };

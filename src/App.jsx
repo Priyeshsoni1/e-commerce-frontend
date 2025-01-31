@@ -20,7 +20,11 @@ import {
 import { useEffect } from "react";
 import { fetchItemsByUserId } from "./features/cart/cartAPI";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
-import { selectLoggedInUser } from "./features/auth/authSlice";
+import {
+  checkAuthAsync,
+  selectLoggedInUser,
+  selectUserChecked,
+} from "./features/auth/authSlice";
 import { PageNotFound } from "./pages/PageNotFound";
 import { OrderSuccessPage } from "./pages/orderSuccessPage";
 import UserOrder from "./features/user/components/UserOrder";
@@ -151,17 +155,26 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
+  const userChecked = useSelector(selectUserChecked);
+
+  useEffect(() => {
+    dispatch(checkAuthAsync());
+  }, [dispatch]);
 
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user?.id));
-      dispatch(fetchLoggedInUserAsync(user?.id));
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchLoggedInUserAsync());
     }
   }, [dispatch, user]);
   return (
     <div className="App">
-      <RouterProvider router={router} />
-      <ToastContainer />
+      {userChecked && (
+        <>
+          <RouterProvider router={router} />
+          <ToastContainer />
+        </>
+      )}
     </div>
   );
 }

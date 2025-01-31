@@ -10,9 +10,9 @@ export const OrderSuccessPage = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
   useEffect(() => {
-    dispatch(resetCartAsync(user?.id));
+    dispatch(resetCartAsync());
     dispatch(resetOrder());
-  }, [dispatch, user?.id]);
+  }, [dispatch, user]);
 
   return (
     <>
