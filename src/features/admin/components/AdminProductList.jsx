@@ -99,7 +99,9 @@ export default function ProductList() {
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
     console.log(pagination, "responsePagination");
-    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
+    dispatch(
+      fetchProductsByFiltersAsync({ filter, sort, pagination, admin: true })
+    );
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {
@@ -352,33 +354,33 @@ const ProductGrid = ({ products, filters }) => {
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
             {products &&
-              products.map((product) => (
-                <div key={product.id} className="group relative">
-                  <Link key={product.id} to={`/product-detail/${product.id}`}>
-                    <div key={product.id} className="group relative">
+              products?.map((product) => (
+                <div key={product?.id} className="group relative">
+                  <Link key={product?.id} to={`/product-detail/${product?.id}`}>
+                    <div key={product?.id} className="group relative">
                       <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                         <img
-                          src={product.thumbnail}
-                          alt={product.title}
+                          src={product?.thumbnail}
+                          alt={product?.title}
                           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                         />
                       </div>
                       <div className="mt-4 flex justify-between">
                         <div>
                           <h3 className="text-sm text-gray-700">
-                            <p href={product.thumbnail}>
+                            <p href={product?.thumbnail}>
                               <span
                                 aria-hidden="true"
                                 className="absolute inset-0"
                               />
-                              {product.title}
+                              {product?.title}
                             </p>
                           </h3>
                           <p className="mt-1 text-sm text-gray-500">
                             <StarIcon className="h-6 w-6 inline" />
                             <span className="align-bottom">
                               {" "}
-                              {product.rating}
+                              {product?.rating}
                             </span>
                           </p>
                         </div>
@@ -388,20 +390,25 @@ const ProductGrid = ({ products, filters }) => {
                             {discountedPrice(product)}
                           </p>
                           <p className="text-sm font-medium text-gray-500 line-through">
-                            ${product.price}
+                            ${product?.price}
                           </p>
                         </div>
                       </div>{" "}
-                      {product.deleted && (
+                      {product?.deleted == true && (
                         <div className="text-sm text-red-500">
                           {" "}
                           Product Deleted{" "}
                         </div>
                       )}
+                      {product?.stock <= 0 && (
+                        <div>
+                          <p className="text-sm text-red-400">out of stock</p>
+                        </div>
+                      )}
                     </div>{" "}
                   </Link>{" "}
                   <Link
-                    to={`/admin/product-form/edit/${product.id}`}
+                    to={`/admin/product-form/edit/${product?.id}`}
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-3"
                   >

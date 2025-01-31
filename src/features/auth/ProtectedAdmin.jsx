@@ -9,7 +9,7 @@ const ProtectedAdmin = ({ children }) => {
   const userInfo = useSelector(selectUserInfo);
 
   if (!user) return <Navigate to="/login" />;
-  if (user && userInfo.role !== "admin") return <Navigate to="/" />;
+  if (user && userInfo?.role !== "admin") return <Navigate to="/" />;
 
   return children;
 };

@@ -5,7 +5,7 @@ export function fetchAllProducts() {
       .then((data) => resolve({ data }));
   });
 }
-export function fetchProductsByFilters(filters, sort, pagination) {
+export function fetchProductsByFilters(filters, sort, pagination, admin) {
   console.log(pagination, "responsePagination");
   //TODO: on server we will support multi values in filter
   // TODO: sever will filter deleted products in case of non-admin user
@@ -24,7 +24,9 @@ export function fetchProductsByFilters(filters, sort, pagination) {
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
-
+  if (admin) {
+    queryString += `admin=true`;
+  }
   console.log(queryString, "response");
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here

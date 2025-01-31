@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllOrdersAsync,
-  selectOrderCount,
+  selectTotalOrders,
   selectOrders,
   updateOrderAsync,
 } from "../../order/orderSlice";
@@ -20,7 +20,7 @@ function AdminOrders() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const orders = useSelector(selectOrders);
-  const totalOrders = useSelector(selectOrderCount);
+  const totalOrders = useSelector(selectTotalOrders);
   const [editableOrderId, setEditableOrderId] = useState(-1);
   const [sort, setSort] = useState({});
   console.log(orders, totalOrders, "admintOrders");

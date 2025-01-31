@@ -6535,7 +6535,7 @@
     {
       "email": "Priyesh9792@gmail.com",
       "password": "qweQWE@1",
-      "addresses": [],
+      "address": [],
       "role": "user",
       "id": 1
     },
@@ -6544,7 +6544,7 @@
       "password": "qweQWE@1",
       "id": 2,
       "role": "user",
-      "addresses": [
+      "address": [
         {
           "name": "Master",
           "email": "Priyesh9792@gmail.com",
@@ -6586,7 +6586,7 @@
     {
       "email": "rocky@gmaill.com",
       "password": "4570Aa!1",
-      "addresses": [
+      "address": [
         {
           "name": "Priyesh",
           "email": "Priyesh9792@gmail.com",
@@ -7061,7 +7061,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -7245,7 +7245,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -7421,7 +7421,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -7597,7 +7597,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -7773,7 +7773,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -7957,7 +7957,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -8134,7 +8134,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -8311,7 +8311,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -8488,7 +8488,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -8665,7 +8665,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -8842,7 +8842,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -9019,7 +9019,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -9196,7 +9196,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -9373,7 +9373,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -9550,7 +9550,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -9727,7 +9727,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -9904,7 +9904,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -10081,7 +10081,7 @@
         "email": "abc@gmail.com",
         "password": "qweQWE@1",
         "id": 2,
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",
@@ -10200,7 +10200,7 @@
       "user": {
         "email": "rocky@gmaill.com",
         "password": "4570Aa!1",
-        "addresses": [],
+        "address": [],
         "role": "admin",
         "id": 3
       },
@@ -10477,7 +10477,7 @@
       "user": {
         "email": "rocky@gmaill.com",
         "password": "4570Aa!1",
-        "addresses": [
+        "address": [
           {
             "name": "Priyesh",
             "email": "Priyesh9792@gmail.com",

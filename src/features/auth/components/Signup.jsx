@@ -40,7 +40,7 @@ export default function Signup() {
                 createUserAsync({
                   email: data.email,
                   password: data.password,
-                  addresses: [],
+                  address: [],
                   role: "user",
                 })
               )
