@@ -24,14 +24,14 @@ export default function Cart() {
   const status = useSelector(selectCartStatus);
   const cartLoaded = useSelector(selectCartLoaded);
   const totalAmount = items.reduce(
-    (amount, item) => item.product.discountPrice * item.quantity + amount,
+    (amount, item) => item?.product?.discountPrice * item?.quantity + amount,
     0
   );
   const dispatch = useDispatch();
-  const totalItems = items.reduce((total, item) => item.quantity + total, 0);
+  const totalItems = items.reduce((total, item) => item?.quantity + total, 0);
 
   const handleQuantity = (e, items) => {
-    dispatch(updateCartAsync({ ...items, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: items.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
@@ -65,11 +65,11 @@ export default function Cart() {
               ) : null}
               <ul className="-my-6 divide-y divide-gray-200">
                 {items.map((item) => (
-                  <li key={item.id} className="flex py-6">
+                  <li key={item?.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        src={item.product.thumbnail}
-                        alt={item.product.title}
+                        src={item?.product?.thumbnail}
+                        alt={item?.product?.title}
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
@@ -78,12 +78,16 @@ export default function Cart() {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>
-                            <a href={item.product.id}>{item.product.title}</a>
+                            <a href={item?.product?.id}>
+                              {item?.product?.title}
+                            </a>
                           </h3>
-                          <p className="ml-4">${item.product.discountPrice}</p>
+                          <p className="ml-4">
+                            ${item?.product?.discountPrice}
+                          </p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
-                          {item.product.brand}
+                          {item?.product?.brand}
                         </p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
@@ -96,7 +100,7 @@ export default function Cart() {
                           </label>
                           <select
                             onChange={(e) => handleQuantity(e, item)}
-                            value={item.quantity}
+                            value={item?.quantity}
                           >
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -108,17 +112,17 @@ export default function Cart() {
 
                         <div className="flex">
                           <Modal
-                            title={`Delete ${item.product.title}`}
+                            title={`Delete ${item?.product?.title}`}
                             message="Are you sure you want to delete this Cart item ?"
                             dangerOption="Delete"
                             cancelOption="Cancel"
-                            dangerAction={(e) => handleRemove(e, item.id)}
+                            dangerAction={(e) => handleRemove(e, item?.id)}
                             cancelAction={() => setOpenModal(null)}
-                            showModal={openModal === item.id}
+                            showModal={openModal === item?.id}
                           ></Modal>
                           <button
                             onClick={(e) => {
-                              setOpenModal(item.id);
+                              setOpenModal(item?.id);
                             }}
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500"

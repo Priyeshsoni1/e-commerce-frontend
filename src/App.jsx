@@ -44,6 +44,7 @@ import AdminProductForm from "./pages/AdminProductFormPage";
 import AdminProductFormPage from "./pages/AdminProductFormPage";
 import AdminOrders from "./features/admin/components/AdminOrders";
 import AdminOrdersPage from "./pages/AdminOrders";
+import StripeCheckout from "./pages/StripeCheckout";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +134,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <UserProfilePage></UserProfilePage>,
+  },
+  {
+    path: "/stripe-checkout/",
+    element: (
+      <Protected>
+        <StripeCheckout></StripeCheckout>
+      </Protected>
+    ),
   },
   {
     path: "/order-success/:id",
