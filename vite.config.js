@@ -5,7 +5,8 @@ import tailwindcss from "tailwindcss";
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
+    port: import.meta.env.PORT || 3000, // Use Render's PORT env variable or fallback to 3000
+    host: "0.0.0.0", // Bind to all network interfaces for external access
   },
   css: {
     postcss: {
