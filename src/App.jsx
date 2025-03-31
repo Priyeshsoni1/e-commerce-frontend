@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import Protected from "./features/auth/protected";
+import Protected from "./features/auth/Protected";
 
 import { CartPage } from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
