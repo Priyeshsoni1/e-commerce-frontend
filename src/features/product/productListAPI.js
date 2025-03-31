@@ -1,6 +1,6 @@
 export function fetchAllProducts() {
   return new Promise((resolve) => {
-    fetch("/products")
+    fetch(`${import.meta.env.VITE_APP_URL}/products`)
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
@@ -30,7 +30,9 @@ export function fetchProductsByFilters(filters, sort, pagination, admin) {
   console.log(queryString, "response");
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
-    const response = await fetch("/products?" + queryString);
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_URL}/products?` + queryString
+    );
     const data = await response.json();
     const totalItems = await response.headers.get("X-Total-Count");
     resolve({ data: { products: data, totalItems: +totalItems } });
@@ -38,21 +40,21 @@ export function fetchProductsByFilters(filters, sort, pagination, admin) {
 }
 export function fetchBrands() {
   return new Promise((resolve) => {
-    fetch("/brands")
+    fetch(`${import.meta.env.VITE_APP_URL}/brands`)
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
 }
 export function fetchProductById(id) {
   return new Promise((resolve) => {
-    fetch("/products/" + id)
+    fetch(`${import.meta.env.VITE_APP_URL}/products/` + id)
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
 }
 export function fetchCategories() {
   return new Promise((resolve) => {
-    fetch("/categories")
+    fetch(`${import.meta.env.VITE_APP_URL}/categories`)
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
@@ -60,7 +62,7 @@ export function fetchCategories() {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/products", {
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,13 +75,16 @@ export function createProduct(product) {
 }
 export function updateProduct(update) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/products/" + update.id, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(update),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_URL}/products/` + update.id,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(update),
+      }
+    );
     const data = await response.json();
     resolve({ data });
   });

@@ -1,6 +1,6 @@
 export function createOrder(item) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/orders", {
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,13 +13,16 @@ export function createOrder(item) {
 }
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/orders/" + order.id, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(order),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_URL}/orders/` + order.id,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+      }
+    );
     const data = await response.json();
     resolve({ data });
   });
@@ -37,7 +40,9 @@ export function fetchAllOrders(sort, pagination) {
   console.log(queryString, "response");
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
-    const response = await fetch("/orders?" + queryString);
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_URL}/orders?` + queryString
+    );
     const data = await response.json();
     const totalOrders = response.headers.get("X-Total-Count");
     console.log(totalOrders, "toatlaCOundt");
