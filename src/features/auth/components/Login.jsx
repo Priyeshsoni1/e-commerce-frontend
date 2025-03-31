@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
 import { loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
@@ -8,7 +7,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();

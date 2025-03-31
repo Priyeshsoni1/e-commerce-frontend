@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { ChevronDownIcon } from "@heroicons/react/16/solid";
+import { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   createProductAsync,
@@ -20,10 +19,10 @@ export const ProductForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     setValue,
     reset,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,7 +52,7 @@ export const ProductForm = () => {
     }
   }, [selectedProduct, setValue, params.id]);
   const [showModal, setShowModal] = useState(false);
-  const handleDelete = (index) => {
+  const handleDelete = () => {
     const product = { ...selectedProduct };
     product.deleted = true;
     dispatch(updateProductAsync(product));

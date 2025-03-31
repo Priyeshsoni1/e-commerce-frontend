@@ -1,4 +1,3 @@
-import React from "react";
 import NavBar from "../features/navbar/navbar";
 
 import UserOrder from "../features/user/components/UserOrder";

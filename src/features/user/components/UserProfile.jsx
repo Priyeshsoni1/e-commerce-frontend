@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchLoggedInUserAsync,
   selectUserInfo,
   updateUserAsync,
-} from "../userSlice";
+} from "../UserSlice";
 import { useForm } from "react-hook-form";
 
 export default function UserProfile() {
@@ -22,13 +22,13 @@ export default function UserProfile() {
   } = useForm();
 
   const handleEdit = (addressUpdate, index) => {
-    const newUser = { ...userInfo, address: [...userInfo?.address] }; // for shallow copy issue
+    const newUser = { ...userInfo, address: [...userInfo.address] }; // for shallow copy issue
     newUser.address.splice(index, 1, addressUpdate);
     dispatch(updateUserAsync(newUser));
     setSelectedEditIndex(-1);
   };
   const handleRemove = (e, index) => {
-    const newUser = { ...userInfo, address: [...userInfo?.address] }; // for shallow copy issue
+    const newUser = { ...userInfo, address: [...userInfo.address] }; // for shallow copy issue
     newUser.address.splice(index, 1);
     dispatch(updateUserAsync(newUser));
   };
@@ -48,7 +48,7 @@ export default function UserProfile() {
   const handleAdd = (address) => {
     const newUser = {
       ...userInfo,
-      address: [...userInfo?.address, address],
+      address: [...userInfo.address, address],
     };
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
@@ -57,7 +57,7 @@ export default function UserProfile() {
     if (!userInfo) {
       dispatch(fetchLoggedInUserAsync);
     }
-  }, [dispatch]);
+  }, [dispatch, userInfo]);
 
   return (
     <div>
@@ -78,7 +78,7 @@ export default function UserProfile() {
 
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <button
-            onClick={(e) => {
+            onClick={() => {
               setShowAddAddressForm(true);
               setSelectedEditIndex(-1);
             }}
@@ -476,7 +476,7 @@ export default function UserProfile() {
 
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                       <button
-                        onClick={(e) => setSelectedEditIndex(-1)}
+                        onClick={() => setSelectedEditIndex(-1)}
                         type="submit"
                         className="rounded-md px-3 py-2 text-sm font-semibold text-grey shadow-sm hover:bg-grey-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
@@ -516,7 +516,7 @@ export default function UserProfile() {
                 </div>
                 <div className="hidden sm:flex sm:flex-col sm:items-end">
                   <button
-                    onClick={(e) => handleEditForm(index)}
+                    onClick={() => handleEditForm(index)}
                     type="button"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >

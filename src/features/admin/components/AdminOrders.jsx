@@ -84,7 +84,7 @@ function AdminOrders() {
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                   <th
                     className="py-3 px-0 text-left cursor-pointer"
-                    onClick={(e) =>
+                    onClick={() =>
                       handleSort({
                         sort: "id",
                         order: sort?._order === "asc" ? "desc" : "asc",
@@ -102,7 +102,7 @@ function AdminOrders() {
                   <th className="py-3 px-0 text-left">Items</th>
                   <th
                     className="py-3 px-0 text-left cursor-pointer"
-                    onClick={(e) =>
+                    onClick={() =>
                       handleSort({
                         sort: "totalAmount",
                         order: sort?._order === "asc" ? "desc" : "asc",
@@ -123,7 +123,7 @@ function AdminOrders() {
                   <th className="py-3 px-0 text-center">Payment Status</th>
                   <th
                     className="py-3 px-0 text-left cursor-pointer"
-                    onClick={(e) =>
+                    onClick={() =>
                       handleSort({
                         sort: "createdAt",
                         order: sort?._order === "asc" ? "desc" : "asc",
@@ -140,7 +140,7 @@ function AdminOrders() {
                   </th>
                   <th
                     className="py-3 px-0 text-left cursor-pointer"
-                    onClick={(e) =>
+                    onClick={() =>
                       handleSort({
                         sort: "updatedAt",
                         order: sort?._order === "asc" ? "desc" : "asc",
@@ -269,13 +269,13 @@ function AdminOrders() {
                         <div className="w-6 mr-4 transform hover:text-purple-500 hover:scale-120">
                           <EyeIcon
                             className="w-8 h-8"
-                            onClick={(e) => handleShow(order)}
+                            onClick={() => handleShow(order)}
                           ></EyeIcon>
                         </div>
                         <div className="w-6 mr-2 transform hover:text-purple-500 hover:scale-120">
                           <PencilIcon
                             className="w-8 h-8"
-                            onClick={(e) => handleEdit(order)}
+                            onClick={() => handleEdit(order)}
                           ></PencilIcon>
                         </div>
                       </div>

@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,7 +9,7 @@ import {
   selectItems,
   updateCartAsync,
 } from "./cartSlice";
-import { discountedPrice } from "../../app/constant";
+
 import { Grid } from "react-loader-spinner";
 import Modal from "../common/Modal";
 
@@ -121,7 +115,7 @@ export default function Cart() {
                             showModal={openModal === item?.id}
                           ></Modal>
                           <button
-                            onClick={(e) => {
+                            onClick={() => {
                               setOpenModal(item?.id);
                             }}
                             type="button"

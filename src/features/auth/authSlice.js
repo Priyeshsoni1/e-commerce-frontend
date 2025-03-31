@@ -124,7 +124,7 @@ export const counterSlice = createSlice({
       .addCase(signOutAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(signOutAsync.fulfilled, (state, action) => {
+      .addCase(signOutAsync.fulfilled, (state) => {
         state.status = "idle";
         state.loggedInUserToken = null;
       })
@@ -136,21 +136,21 @@ export const counterSlice = createSlice({
         state.loggedInUserToken = action.payload;
         state.userChecked = true;
       })
-      .addCase(checkAuthAsync.rejected, (state, action) => {
+      .addCase(checkAuthAsync.rejected, (state) => {
         state.status = "idle";
         state.userChecked = true;
       })
       .addCase(resetPasswordRequestAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(resetPasswordRequestAsync.fulfilled, (state, action) => {
+      .addCase(resetPasswordRequestAsync.fulfilled, (state) => {
         state.status = "idle";
         state.mailSent = true;
       })
       .addCase(resetPasswordAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(resetPasswordAsync.fulfilled, (state, action) => {
+      .addCase(resetPasswordAsync.fulfilled, (state) => {
         state.status = "idle";
         state.passwordReset = true;
       })

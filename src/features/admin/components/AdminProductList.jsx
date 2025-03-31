@@ -1,12 +1,6 @@
-import React, { useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffect } from "react";
 
-import {
-  Button,
-  Dialog,
-  Disclosure,
-  Menu,
-  Transition,
-} from "@headlessui/react";
+import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { StarIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { discountedPrice, ITEMS_PER_PAGE } from "../../../app/constant";

@@ -81,7 +81,7 @@ export const cartSlice = createSlice({
         state.items = action.payload;
         state.cartLoaded = true;
       })
-      .addCase(fetchItemsByUserIdAsync.rejected, (state, action) => {
+      .addCase(fetchItemsByUserIdAsync.rejected, (state) => {
         state.status = "idle";
         state.cartLoaded = true;
       })
@@ -107,7 +107,7 @@ export const cartSlice = createSlice({
       .addCase(resetCartAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(resetCartAsync.fulfilled, (state, action) => {
+      .addCase(resetCartAsync.fulfilled, (state) => {
         state.status = "idle";
         state.items = [];
       });

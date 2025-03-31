@@ -1,4 +1,3 @@
-import React from "react";
 import NavBar from "../features/navbar/navbar";
 import { ProductForm } from "../features/admin/components/ProductForm";
 

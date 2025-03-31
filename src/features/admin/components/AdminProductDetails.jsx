@@ -9,7 +9,7 @@ import {
   selectProductById,
 } from "../../product/productListSlice";
 import { addToCartAsync } from "../../cart/cartSlice";
-import { selectLoggedInUser } from "../../auth/authSlice";
+
 import { discountedPrice } from "../../../app/constant";
 
 // TODO: In server data we will add colors, sizes , highlights. to each product
@@ -49,7 +49,6 @@ const AdminProductDetail = () => {
   console.log(product, "product");
   const dispatch = useDispatch();
   const params = useParams();
-  const user = useSelector(selectLoggedInUser);
 
   useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id));

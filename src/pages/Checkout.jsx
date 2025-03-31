@@ -59,7 +59,7 @@ function Checkout() {
     setPaymentMethod(e.target.value);
   };
 
-  const handleOrder = (e) => {
+  const handleOrder = () => {
     if (selectedAddress && paymentMethod) {
       const order = {
         items,
