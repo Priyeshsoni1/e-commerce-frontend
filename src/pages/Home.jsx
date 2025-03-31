@@ -1,4 +1,4 @@
-import NavBar from "../features/navbar/Navbar";
+import NavBar from "../features/navbar/navbar";
 import Footer from "../features/common/Footer";
 import ProductList from "../features/product/components/ProductList";
 

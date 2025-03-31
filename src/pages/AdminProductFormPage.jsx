@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../features/navbar/Navbar";
+import NavBar from "../features/navbar/navbar";
 import { ProductForm } from "../features/admin/components/ProductForm";
 
 const AdminProductFormPage = () => {

@@ -4,21 +4,16 @@ import Protected from "./features/auth/Protected";
 
 import { CartPage } from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
 import SignupPage from "./pages/SignupPage";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect } from "react";
-import { fetchItemsByUserId } from "./features/cart/cartAPI";
+
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import {
   checkAuthAsync,
@@ -26,25 +21,25 @@ import {
   selectUserChecked,
 } from "./features/auth/authSlice";
 import { PageNotFound } from "./pages/PageNotFound";
-import { OrderSuccessPage } from "./pages/orderSuccessPage";
-import UserOrder from "./features/user/components/UserOrder";
+import { OrderSuccessPage } from "./pages/OrderSuccessPage";
+
 import UserOrderPage from "./pages/UserOrderPage";
-import UserProfile from "./features/user/components/UserProfile";
+
 import { UserProfilePage } from "./pages/UserProfilePage";
 import { fetchLoggedInUserAsync } from "./features/user/UserSlice";
 import { Logout } from "./features/auth/components/Logout";
-import ForgotPassword from "./features/auth/components/ForgotPassword";
+
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import ProtectedAdmin from "./features/auth/ProtectedAdmin";
+
 import AdminHome from "./pages/AdminHome";
-import AdminProductDetail from "./features/admin/components/AdminProductDetails";
+
 import AdminProductDetailPage from "./pages/AdminProductDetailPage";
-import { ProductForm } from "./features/admin/components/ProductForm";
-import AdminProductForm from "./pages/AdminProductFormPage";
+
 import AdminProductFormPage from "./pages/AdminProductFormPage";
-import AdminOrders from "./features/admin/components/AdminOrders";
+
 import AdminOrdersPage from "./pages/AdminOrders";
 import StripeCheckout from "./pages/StripeCheckout";
+import ProtectedAdmin from "./features/auth/ProtectedAdmin";
 
 const router = createBrowserRouter([
   {
