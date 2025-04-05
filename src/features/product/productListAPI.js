@@ -40,7 +40,10 @@ export function fetchProductsByFilters(filters, sort, pagination, admin) {
 }
 export function fetchBrands() {
   return new Promise((resolve) => {
-    fetch(`${import.meta.env.VITE_APP_URL}/brands`)
+    fetch(`${import.meta.env.VITE_APP_URL}/brands`, {
+      method: "GET", // or POST, PUT, etc.
+      credentials: "include", // Include cookies with the request
+    })
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
