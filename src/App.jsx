@@ -11,11 +11,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 
 import SignupPage from "./pages/SignupPage";
 
-import {
-  createBrowserRouter,
-  createHashRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect } from "react";
 
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
@@ -45,7 +41,7 @@ import AdminOrdersPage from "./pages/AdminOrders";
 import StripeCheckout from "./pages/StripeCheckout";
 import ProtectedAdmin from "./features/auth/ProtectedAdmin";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: (

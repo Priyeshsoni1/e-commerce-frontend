@@ -11,5 +11,5 @@ export const Logout = () => {
     dispatch(signOutAsync());
   }, [dispatch]);
 
-  return <div>{!user && <Navigate to="/login" />}</div>;
+  return <div>{<Navigate to="/login" />}</div>;
 };
