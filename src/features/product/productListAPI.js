@@ -1,6 +1,9 @@
 export function fetchAllProducts() {
   return new Promise((resolve) => {
-    fetch(`${import.meta.env.VITE_APP_URL}/products`)
+    fetch(`${import.meta.env.VITE_APP_URL}/products`, {
+      method: "GET", // or POST, PUT, etc.
+      credentials: "include", // Include cookies with the request
+    })
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
@@ -31,7 +34,11 @@ export function fetchProductsByFilters(filters, sort, pagination, admin) {
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
     const response = await fetch(
-      `${import.meta.env.VITE_APP_URL}/products?` + queryString
+      `${import.meta.env.VITE_APP_URL}/products?` + queryString,
+      {
+        method: "GET", // or POST, PUT, etc.
+        credentials: "include", // Include cookies with the request
+      }
     );
     const data = await response.json();
     const totalItems = await response.headers.get("X-Total-Count");
@@ -50,14 +57,20 @@ export function fetchBrands() {
 }
 export function fetchProductById(id) {
   return new Promise((resolve) => {
-    fetch(`${import.meta.env.VITE_APP_URL}/products/` + id)
+    fetch(`${import.meta.env.VITE_APP_URL}/products/` + id, {
+      method: "GET", // or POST, PUT, etc.
+      credentials: "include", // Include cookies with the request
+    })
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
 }
 export function fetchCategories() {
   return new Promise((resolve) => {
-    fetch(`${import.meta.env.VITE_APP_URL}/categories`)
+    fetch(`${import.meta.env.VITE_APP_URL}/categories`, {
+      method: "GET", // or POST, PUT, etc.
+      credentials: "include", // Include cookies with the request
+    })
       .then((response) => response.json())
       .then((data) => resolve({ data }));
   });
@@ -70,6 +83,9 @@ export function createProduct(product) {
       headers: {
         "Content-Type": "application/json",
       },
+
+      credentials: "include", // Include cookies with the request
+
       body: JSON.stringify(product),
     });
     const data = await response.json();
@@ -85,6 +101,9 @@ export function updateProduct(update) {
         headers: {
           "Content-Type": "application/json",
         },
+
+        credentials: "include", // Include cookies with the request
+
         body: JSON.stringify(update),
       }
     );

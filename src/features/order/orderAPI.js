@@ -5,6 +5,9 @@ export function createOrder(item) {
       headers: {
         "Content-Type": "application/json",
       },
+
+      credentials: "include", // Include cookies with the request
+
       body: JSON.stringify(item),
     });
     const data = await response.json();
@@ -20,6 +23,8 @@ export function updateOrder(order) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // Include cookies with the request
+
         body: JSON.stringify(order),
       }
     );
@@ -41,7 +46,11 @@ export function fetchAllOrders(sort, pagination) {
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
     const response = await fetch(
-      `${import.meta.env.VITE_APP_URL}/orders?` + queryString
+      `${import.meta.env.VITE_APP_URL}/orders?` + queryString,
+      {
+        method: "GET", // or POST, PUT, etc.
+        credentials: "include", // Include cookies with the request
+      }
     );
     const data = await response.json();
     const totalOrders = response.headers.get("X-Total-Count");

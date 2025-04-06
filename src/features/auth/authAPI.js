@@ -7,6 +7,9 @@ export function createUser(userData) {
         headers: {
           "Content-Type": "application/json",
         },
+
+        credentials: "include", // Include cookies with the request
+
         body: JSON.stringify(userData),
       }
     );
@@ -44,7 +47,11 @@ export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_APP_URL}/auth/check`
+        `${import.meta.env.VITE_APP_URL}/auth/check`,
+        {
+          method: "GET", // or POST, PUT, etc.
+          credentials: "include", // Include cookies with the request
+        }
       );
       if (response.ok) {
         const data = await response.json();
@@ -63,7 +70,11 @@ export function signOut(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_APP_URL}/auth/logout`
+        `${import.meta.env.VITE_APP_URL}/auth/logout`,
+        {
+          method: "GET", // or POST, PUT, etc.
+          credentials: "include", // Include cookies with the request
+        }
       );
       if (response.ok) {
         const data = await response.json();
@@ -87,6 +98,8 @@ export function resetPasswordRequest(email) {
           method: "POST",
           body: JSON.stringify({ email }),
           headers: { "content-type": "application/json" },
+
+          credentials: "include", // Include cookies with the request
         }
       );
       if (response.ok) {
@@ -111,6 +124,8 @@ export function resetPassword(data) {
           method: "POST",
           body: JSON.stringify(data),
           headers: { "content-type": "application/json" },
+
+          credentials: "include", // Include cookies with the request
         }
       );
       if (response.ok) {

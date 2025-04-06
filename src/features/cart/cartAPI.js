@@ -5,6 +5,9 @@ export function addToCart(item) {
       headers: {
         "Content-Type": "application/json",
       },
+
+      credentials: "include", // Include cookies with the request
+
       body: JSON.stringify(item),
     });
     const data = await response.json();
@@ -15,7 +18,10 @@ export function addToCart(item) {
 export function fetchItemsByUserId() {
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
-    const response = await fetch(`${import.meta.env.VITE_APP_URL}/cart`);
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/cart`, {
+      method: "GET", // or POST, PUT, etc.
+      credentials: "include", // Include cookies with the request
+    });
     const data = await response.json();
     resolve({ data });
   });
@@ -29,6 +35,9 @@ export function updateCart(update) {
         headers: {
           "Content-Type": "application/json",
         },
+
+        credentials: "include", // Include cookies with the request
+
         body: JSON.stringify(update),
       }
     );
@@ -44,6 +53,8 @@ export function deleteItemFromCart(itemId) {
       {
         method: "DELETE",
         headers: { "content-type": "application/json" },
+
+        credentials: "include", // Include cookies with the request
       }
     );
     const data = await response.json();
