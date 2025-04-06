@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteItemFromCartAsync,
@@ -12,11 +12,13 @@ import {
 
 import { Grid } from "react-loader-spinner";
 import Modal from "../common/Modal";
+import { toast } from "react-toastify";
 
 export default function Cart() {
   const items = useSelector(selectItems);
   const status = useSelector(selectCartStatus);
   const cartLoaded = useSelector(selectCartLoaded);
+  const navigate = useNavigate();
   const totalAmount = items.reduce(
     (amount, item) => item?.product?.discountPrice * item?.quantity + amount,
     0
@@ -145,8 +147,15 @@ export default function Cart() {
               Shipping and taxes calculated at checkout.
             </p>
             <div className="mt-6">
+              {}
               <Link
-                to="/checkout"
+                onClick={() => {
+                  if (totalAmount >= 50) {
+                    navigate("/checkout");
+                  } else {
+                    toast.error("Minimum amount must be ₹50.");
+                  }
+                }}
                 className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
               >
                 Checkout
