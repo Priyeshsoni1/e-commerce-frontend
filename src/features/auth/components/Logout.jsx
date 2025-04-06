@@ -9,7 +9,7 @@ export const Logout = () => {
   const user = useSelector(selectLoggedInUser);
   useEffect(() => {
     dispatch(signOutAsync());
-  });
+  }, [dispatch]);
 
   return <div>{!user && <Navigate to="/login" />}</div>;
 };
