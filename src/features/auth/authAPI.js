@@ -66,7 +66,7 @@ export function checkAuth() {
   });
 }
 
-export function signOut(loginInfo) {
+export function signOut() {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(

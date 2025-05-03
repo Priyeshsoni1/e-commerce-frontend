@@ -128,6 +128,10 @@ export const counterSlice = createSlice({
         state.status = "idle";
         state.loggedInUserToken = null;
       })
+      .addCase(signOutAsync.rejected, (state) => {
+        state.status = "idle";
+        state.loggedInUserToken = null;
+      })
       .addCase(checkAuthAsync.pending, (state) => {
         state.status = "loading";
       })
