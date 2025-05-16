@@ -140,6 +140,7 @@ export const counterSlice = createSlice({
         state.loggedInUserToken = action.payload;
         state.userChecked = true;
       })
+
       .addCase(checkAuthAsync.rejected, (state) => {
         state.status = "idle";
         state.userChecked = true;
@@ -170,5 +171,6 @@ export const selectError = (state) => state.auth.error;
 export const selectUserChecked = (state) => state.auth.userChecked;
 export const selectMailSent = (state) => state.auth.mailSent;
 export const selectPasswordReset = (state) => state.auth.passwordReset;
+export const selectStatus = (state) => state.auth.status;
 
 export default counterSlice.reducer;

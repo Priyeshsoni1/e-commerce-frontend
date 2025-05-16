@@ -18,6 +18,7 @@ import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import {
   checkAuthAsync,
   selectLoggedInUser,
+  selectStatus,
   selectUserChecked,
 } from "./features/auth/authSlice";
 import { PageNotFound } from "./pages/PageNotFound";
@@ -41,6 +42,9 @@ import AdminOrdersPage from "./pages/AdminOrders";
 import StripeCheckout from "./pages/StripeCheckout";
 import ProtectedAdmin from "./features/auth/ProtectedAdmin";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import Loader from "./features/common/Loaders";
+import FullScreenLoading from "./features/common/FullLoader";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -164,6 +168,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
   const userChecked = useSelector(selectUserChecked);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     dispatch(checkAuthAsync());
@@ -175,15 +180,20 @@ function App() {
       dispatch(fetchLoggedInUserAsync());
     }
   }, [dispatch, user]);
+  console.log(userChecked, status, "StartingPages");
+  const taskS = status == "loading" ? true : false;
   return (
-    <div className="App">
-      {userChecked && (
-        <>
-          <RouterProvider router={router} />
-          <ToastContainer />
-        </>
-      )}
-    </div>
+    <>
+      {taskS && <FullScreenLoading />}
+      <div className="App">
+        {userChecked && !taskS && (
+          <>
+            <RouterProvider router={router} />
+            <ToastContainer />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 
